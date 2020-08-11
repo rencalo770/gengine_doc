@@ -13,6 +13,7 @@
 </head>
 <body>
   <div id="app"></div>
+  <div id="gitalk-container"></div>
 
   <script>
     window.$docsify = {
@@ -38,12 +39,17 @@
         title: location.hash.match(/#(.*?)([?]|$)/)[1],// 用于标记评论是哪个页面的，确保唯一，并且长度小于50
         id: location.hash.match(/#(.*?)([?]|$)/)[1],
     });
+    /**
+     * 1、由于docsify的链接URL使用的是hash的方式，导致切换页面的时候不会刷新页面，导致整个网站的Gitalk评论使用的是一个评论，因此做了监听hash事件，来刷新页面，这样就能每次切换页面刷新，然后加载对应的评论。
+     2、关于Gitalk参数id的值，由于点击二级标题后，二级标题会以参数的形式出现在url上，导致长度有事超过了50，所以过滤掉URL中的参数，此外还能解决评论定位不到问题(二级标题会在URL上)。
+     *
+     */
     window.onhashchange = function(event){
         if(event.newURL.split('?')[0] !== event.oldURL .split('?')[0]) {
             location.reload()
         }
     };
     // 由于docsify/lib/plugins/gitalk.min.js文件中已经有下面代码了，所以不需要在写一次了
-    // gitalk.render('gitalk-container')
+     gitalk.render('gitalk-container')
 </script>
 </html>
