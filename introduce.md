@@ -13,3 +13,6 @@ gengine相比于java领域的著名规则引擎drools的优势如下：
 
 ### 设计思想
 - gengine的设计思想的帖子，您可以看这里:https://xie.infoq.cn/article/40bfff1fbca1867991a1453ac
+
+### github地址
+- https://github.com/rencalo770/gengine
