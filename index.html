@@ -9,11 +9,9 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/vue.css">
 
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 </head>
 <body>
   <div id="app"></div>
-  <div id="gitalk-container"></div>
 
   <script>
     window.$docsify = {
@@ -28,9 +26,10 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
 </body>
-
+<script src="//unpkg.com/docsify/lib/plugins/gitalk.min.js"></script>
+<script src="//unpkg.com/gitalk/dist/gitalk.min.js"></script>
 <script>
-    var gitalk = new Gitalk({
+    const gitalk = new Gitalk({
         clientID: '0814dc5e73530d2cf6e0', // GitHub Application Client ID
         clientSecret: '559e821068a562e0bcece6dc64bcc66967b979aa', // GitHub Application Client Secret
         repo: 'gengine_doc',      // 存放评论的仓库
@@ -50,6 +49,8 @@
         }
     };
     // 由于docsify/lib/plugins/gitalk.min.js文件中已经有下面代码了，所以不需要在写一次了
-     gitalk.render('gitalk-container')
+     //gitalk.render('gitalk-container')
 </script>
+
+
 </html>
