@@ -10,20 +10,21 @@
     <script src="https://cdn.bootcss.com/viz.js/1.8.0/viz.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 
-    <script src="//cdn.jsdelivr.net/npm/docsify-prism@latest/dist/docsify-prism.min.js"></script>
+
 </head>
 <body>
   <div id="app"></div>
 
   <script>
     window.$docsify = {
-      name: '',
-      repo: '',
       //loadNavbar: true, //导航栏
-      loadSidebar: true,
-      subMaxLevel: 4,  //是否显示次级目录
-      coverpage: true,  //首页
-      onlyCover: true,
+        loadSidebar: true,
+        subMaxLevel: 4,  //是否显示次级目录
+        coverpage: true,  //首页
+        onlyCover: true,
+        markdown:{
+            smartypants: true,
+        }
     }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
@@ -53,6 +54,7 @@
     // 由于docsify/lib/plugins/gitalk.min.js文件中已经有下面代码了，所以不需要在写一次了
      //gitalk.render('gitalk-container')
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/docsify-prism@latest/dist/docsify-prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/components/prism-go.js"></script>
 
 </html>
