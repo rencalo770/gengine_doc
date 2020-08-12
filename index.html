@@ -36,14 +36,14 @@
         clientID: '0814dc5e73530d2cf6e0', // GitHub Application Client ID
         clientSecret: '559e821068a562e0bcece6dc64bcc66967b979aa', // GitHub Application Client Secret
         repo: 'gengine_doc',      // 存放评论的仓库
-        owner: 'rencalo770',          // 仓库的创建者，
-        admin: ['rencalo770'],        // 如果仓库有多个人可以操作，那么在这里以数组形式写出
-        title: location.hash.match(/#(.*?)([?]|$)/)[1],// 用于标记评论是哪个页面的，确保唯一，并且长度小于50
+        owner: 'rencalo770',          // 仓库的创建者,
+        admin: ['rencalo770'],        // 如果仓库有多个人可以操作,那么在这里以数组形式写出
+        title: location.hash.match(/#(.*?)([?]|$)/)[1],// 用于标记评论是哪个页面的,确保唯一,并且长度小于50
         id: location.hash.match(/#(.*?)([?]|$)/)[1],
     });
     /**
-     * 1、由于docsify的链接URL使用的是hash的方式，导致切换页面的时候不会刷新页面，导致整个网站的Gitalk评论使用的是一个评论，因此做了监听hash事件，来刷新页面，这样就能每次切换页面刷新，然后加载对应的评论。
-     2、关于Gitalk参数id的值，由于点击二级标题后，二级标题会以参数的形式出现在url上，导致长度有事超过了50，所以过滤掉URL中的参数，此外还能解决评论定位不到问题(二级标题会在URL上)。
+     * 1、由于docsify的链接URL使用的是hash的方式,导致切换页面的时候不会刷新页面,导致整个网站的Gitalk评论使用的是一个评论,因此做了监听hash事件,来刷新页面,这样就能每次切换页面刷新,然后加载对应的评论.
+     2、关于Gitalk参数id的值,由于点击二级标题后,二级标题会以参数的形式出现在url上,导致长度有事超过了50,所以过滤掉URL中的参数,此外还能解决评论定位不到问题(二级标题会在URL上).
      *
      */
     window.onhashchange = function(event){
@@ -51,7 +51,7 @@
             location.reload()
         }
     };
-    // 由于docsify/lib/plugins/gitalk.min.js文件中已经有下面代码了，所以不需要在写一次了
+    // 由于docsify/lib/plugins/gitalk.min.js文件中已经有下面代码了,所以不需要在写一次了
      //gitalk.render('gitalk-container')
 </script>
 <script src="https://cdn.jsdelivr.net/npm/docsify-prism@latest/dist/docsify-prism.min.js"></script>
