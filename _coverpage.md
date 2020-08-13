@@ -1,6 +1,8 @@
 ![logo](_media/gengine.svg)
 # gengine官方文档
-- 哔哩哔哩(www.bilibili.com)开源golang规则引擎
+-  [哔哩哔哩][1] 开源golang规则引擎
+
+ [1]: https://www.bilibili.com
 
 ![Github watch](https://img.shields.io/github/watchers/rencalo770/gengine.svg)
 ![Github stars](https://img.shields.io/github/stars/rencalo770/gengine.svg)
