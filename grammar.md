@@ -33,6 +33,9 @@ end`
 - uint, uint8, uint16,uint32, uint64
 - float32, float64
 
+#### 不支持的特例
+- 不支持函数或方法返回nil,或者nil值处理,提倡用户设置默认值处理。另外，map中使用不存在的key获取value，会有nil异常
+
 #### 规则体支持的语法
 - 完整的if .. else if .. else 语法结构,及其嵌套结构
 
