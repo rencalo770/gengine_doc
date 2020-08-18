@@ -17,8 +17,7 @@ gengine相比于java领域的著名规则引擎drools的优势如下:
 
 
 ### 使用
-- go.mod文件
-
+- go.mod文件(请使用最新版本)
 ```
 module your_module_name
 
