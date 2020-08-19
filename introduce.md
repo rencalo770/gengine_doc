@@ -34,7 +34,7 @@ require (
 replace gengine => github.com/rencalo770/gengine v1.1.5
 ```
 
-如果你只依赖gngine,那么你的go.mod文件这么写:
+如果你只依赖gengine,那么go.mod文件这么写:
 
 ```
 module your_module_name
