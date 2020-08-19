@@ -24,7 +24,7 @@ module your_module_name
 
 go 1.14
 
-require(
+require (
 	gengine v1.0.8
 )
 
