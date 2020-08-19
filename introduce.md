@@ -53,6 +53,7 @@ replace gengine => github.com/rencalo770/gengine v1.1.5
 ### 版本
 - gengine新版本完全兼容老版本,请使用最新版本
 - gengine处于持续迭代中,我们也需要你的宝贵意见和想法
+- https://github.com/rencalo770/gengine/tags
 
 ### 联系
 - 在github上提issue
