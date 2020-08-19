@@ -19,17 +19,32 @@ gengine相比于java领域的著名规则引擎drools的优势如下:
 ### 使用
 - go.mod文件(请使用最新版本)
 
+如果你不仅依赖gengine,还依赖其他框架,如grpc,那么go.mod 文件这么写:
+
 ```
 module your_module_name
 
 go 1.14
 
 require (
+    google.golang.org/grpc v1.22.0
 	gengine v1.0.8
 )
 
 replace gengine => github.com/rencalo770/gengine v1.1.5
 ```
+
+如果你只依赖gngine,那么你的go.mod文件这么写:
+
+```
+module your_module_name
+
+require gengine v1.0.8
+
+replace gengine => github.com/rencalo770/gengine v1.1.5
+```
+
+
 
 ### github地址
 - https://github.com/rencalo770/gengine
