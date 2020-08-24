@@ -66,13 +66,22 @@ func (gp *GenginePool)ExecuteRules(reqName string, req interface{}, respName str
 ```go
 func  (gp *GenginePool)ExecuteRulesWithMultiInput(data map[string]interface{}) error
 ```
- 此方法是为了解决```ExecuteRules```方法的局限的一个新方法,其他的内部实现和其完全一样.用户可以传入任意多个临时参数到gengine中,但传入的参数要先放到map中
+- 此方法是为了解决```ExecuteRules```方法的局限的一个新方法,其他的内部实现和其完全一样.
+- 用户可以传入任意多个临时参数到gengine中,但传入的参数要先放到map中
 
 #### ExecuteRulesWithStopTag方法
 ```go
 func (gp *GenginePool)ExecuteRulesWithStopTag(reqName string, req interface{}, respName string, resp interface{}, stag *Stag) error
 ```
-此方法和```ExecuteRules```唯一不同的地方在于,在顺序执行模式下,用户可以使用stag来控制是否继续执行后续规则
+- 此方法和```ExecuteRules```唯一不同的地方在于,在顺序执行模式和混合模式下,用户可以使用stag来控制是否继续执行后续规则
+
+#### ExecuteRulesWithMultiInputAndStopTag方法
+```go
+func (gp *GenginePool)ExecuteRulesWithMultiInputAndStopTag(data map[string]interface{}, stag *Stag) error 
+```
+- 此方法继承了```ExecuteRulesWithMultiInput``` 可以传入任意多个临时参数的优点
+- 同时继承了```ExecuteRulesWithStopTag```可以在顺序执行模式和混合模式下，用户可以使用stag来控制是否继续执行后续规则的优点
+- v1.1.8中引入
 
 #### ExecuteSelectedRulesWithMultiInput方法
 ```go

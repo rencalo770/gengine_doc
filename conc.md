@@ -1,6 +1,8 @@
 # 规则内的并发实现
-在很多业务场景下,一个规则,需要很多的数据指标支持,因为数据量的缘故,这些数据指标往往不可能存储在本地. 因此,如果在规则内顺序地从网络上取很多个指标时,会严重拖慢规则的执行性能.
-基于此考量,gengine支持规则内的并发执行.其语法相当简单,使用conc{}语句块来包裹需要并发调用的接口即可.
+- 在很多业务场景下,一个规则,需要很多的数据指标支持,因为数据量的缘故,这些数据指标往往不可能存储在本地.
+- 因此,如果在规则内顺序地从网络上取很多个指标时,会严重拖慢规则的执行性能.
+- 基于此考量,**gengine支持规则内的并发函数调用或赋值语句**.其语法相当简单,使用conc{}语句块来包裹需要并发调用的接口即可.
+
 ```go
 const rule_conc_statement  = `
 rule "conc_test" "test" 
@@ -15,7 +17,7 @@ begin
 		sout("heheheheh")
 	}
 	println(a, b, c, d, e)
-end
+end`
 
 //define
 func Sout(str string)  {
@@ -25,7 +27,6 @@ func Sout(str string)  {
 //inject
 dataContext.Add("println",fmt.Println)
 dataContext.Add("sout", Sout)
-`
 ```
 
 测试:https://github.com/rencalo770/gengine/blob/master/test/conc_statement_test.go

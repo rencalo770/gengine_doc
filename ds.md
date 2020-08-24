@@ -3,7 +3,7 @@
 gengine主要支持4种数据结构,分别是golang的struct，以及基础类型的map、array和slice, 为了保持简洁、以及语言的无关性, 支持这4种结构的如下操作:
 
 ### 注入struct
-注入struct必须是以指针的形式注入,否则无法在规则中改变结构体的属性值,注入结构体示例如下:
+**注入struct必须是以指针的形式注入,否则无法在规则中改变结构体的属性值**,注入结构体示例如下:
 
 ```go
 	user := &User{
@@ -20,7 +20,7 @@ gengine主要支持4种数据结构,分别是golang的struct，以及基础类�
 
 ### 注入map
 
-gengine只能基于key对map取值或设置值,且注入的map,必须是指针map,或者附着于结构体指针的map; 当以非指针形式的map注入dataContext,则只能用key取值,而不能设置值
+**gengine只能基于key对map取值或设置值,且注入的map,必须是指针map,或者附着于结构体指针的map; 当以非指针形式的map注入dataContext,则只能用key取值,而不能设置值**
 ```go
     //define
     type MS struct {
@@ -49,7 +49,7 @@ gengine只能基于key对map取值或设置值,且注入的map,必须是指针ma
 测试:https://github.com/rencalo770/gengine/blob/master/test/map_slice_array/map_test.go 
 
 ### 注入数组
-gengine只能基于index对数组取值或设置值,且注入的数组,必须为指针数组,或者附着与结构体指针的数组,当以非指针形式的数组注入dataContext.则只能用index取值,而不能设置值
+**gengine只能基于index对数组取值或设置值,且注入的数组,必须为指针数组,或者附着与结构体指针的数组,当以非指针形式的数组注入dataContext.则只能用index取值,而不能设置值**
 ```go
     
     //define
@@ -77,7 +77,7 @@ gengine只能基于index对数组取值或设置值,且注入的数组,必须为
 测试: https://github.com/rencalo770/gengine/blob/master/test/map_slice_array/array_test.go
 
 ### 注入slice
-gengine只能基于index对切片取值或设置值,且注入的切片,必须为指针切片,或者附着与结构体指针的切片,当以非指针形式的切片注入dataContext.则只能用index取值,而不能设置值
+**gengine只能基于index对切片取值或设置值,且注入的切片,必须为指针切片,或者附着与结构体指针的切片,当以非指针形式的切片注入dataContext.则只能用index取值,而不能设置值**
 ```go
     
     //define
