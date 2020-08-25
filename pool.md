@@ -30,8 +30,6 @@ func (gp *GenginePool)UpdatePooledRules(ruleStr string) error
 ```
 此方法允许用户在"规则引擎池"对外提供服务的时候,实时的更新规则,且线程安全
 
-#### 参数说明
-- ruleStr 新的用户需要加载的规则的字符串
 
 ### 清空规则
 ```go
@@ -45,11 +43,10 @@ func (gp *GenginePool)ClearPoolRules()
 //设置执行模式
 func (gp *GenginePool)SetExecModel(execModel int) error 
 ```
-- 此方法允许用户在"规则引擎池"对外提供服务的时候,实时的改变规则执行模式,且线程安全
-
-#### 参数说明
+此方法允许用户在"规则引擎池"对外提供服务的时候,实时的改变规则执行模式,且线程安全
 - execModel 执行模式编号,只能为1、2或3中的一个值
 - 当使用```ExecuteSelectedRulesWithMultiInput```和```ExecuteSelectedRulesConcurrentWithMultiInput```方法执行规则时,此参数自动失效
+
 ### 执行规则
 
 #### ExecuteRules方法
