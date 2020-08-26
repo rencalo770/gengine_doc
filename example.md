@@ -108,4 +108,62 @@ func Test_Multi(t *testing.T){
 - 需要注意的是，编译构建规则是一个CPU密集型的事情，通常只有规则被用户更新的时候才去编译构建更新;当有多个gengine实例时，每次更新只构建一次，剩下的实例以复制(拷贝)的方式获得构建好的ruleBuilder(规则)
 
 
+#### 真实服务举例
+```go
+
+type  MyService  struct{
+	Kc       *base.KnowledgeContext
+	Dc       *context.DataContext
+	Rb       *builder.RuleBuilder
+	Gengine  *engine.Gengine
+
+	//field...
+}
+
+//init
+func NewMyService(ruleStr string, /* other params */ ) *MyService {
+
+	dataContext := context.NewDataContext()
+	// there add you want to use in every request
+	dataContext.Add("makePanic", MakePanic)
+
+	knowledgeContext := base.NewKnowledgeContext()
+	ruleBuilder := builder.NewRuleBuilder(knowledgeContext, dataContext)
+	e := ruleBuilder.BuildRuleFromString(ruleStr)
+	if e != nil {
+		panic(e)
+	}
+	gengine := engine.NewGengine()
+
+	return &MyService{
+		Kc      : knowledgeContext,
+		Dc      : dataContext,
+		Rb      : ruleBuilder,
+		Gengine : gengine,
+	}
+}
+
+// when user want to update rules in running time, use it
+func (ms *MyService)UpdateRule(newRuleStr string) error {
+
+	rb := builder.NewRuleBuilder(ms.Kc, ms.Dc)
+	e := rb.BuildRuleFromString(newRuleStr)
+	if e != nil {
+		return  e
+	}
+	//replace old ptr
+	ms.Rb = rb
+	return nil
+}
+
+//service
+func (ms *MyService) Service(name string, req interface{}) error {
+
+	//the req just use once in this request
+	ms.Dc.Add(name, req)
+	e := ms.Gengine.Execute(ms.Rb, true)
+	return e
+}
+
+```
 
