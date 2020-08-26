@@ -109,8 +109,10 @@ func Test_Multi(t *testing.T){
 
 
 #### 真实服务举例
-```go
 
+在真实的线上服务中，请按照下面的方式来加载或更新规则:
+
+```go
 type  MyService  struct{
 	Kc       *base.KnowledgeContext
 	Dc       *context.DataContext
