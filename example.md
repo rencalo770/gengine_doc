@@ -126,8 +126,8 @@ type  MyService  struct{
 func NewMyService(ruleStr string, /* other params */ ) *MyService {
 
 	dataContext := context.NewDataContext()
-	// there add you want to use in every request
-	dataContext.Add("makePanic", MakePanic)
+	// there add what you want to use in every request
+	dataContext.Add("println", fmt.Println)
 
 	knowledgeContext := base.NewKnowledgeContext()
 	ruleBuilder := builder.NewRuleBuilder(knowledgeContext, dataContext)
