@@ -9,7 +9,6 @@ package test
 import (
 	"bytes"
 	"fmt"
-	"gengine/base"
 	"gengine/builder"
 	"gengine/context"
 	"gengine/engine"
@@ -64,8 +63,7 @@ func Test_Multi(t *testing.T){
     dataContext.Add("User", user)
 
 	//init rule engine
-	knowledgeContext := base.NewKnowledgeContext()
-	ruleBuilder := builder.NewRuleBuilder(knowledgeContext,dataContext)
+	ruleBuilder := builder.NewRuleBuilder(dataContext)
 
 
 	start1 := time.Now().UnixNano()
@@ -73,7 +71,7 @@ func Test_Multi(t *testing.T){
 	err := ruleBuilder.BuildRuleFromString(rule1) //string(bs)
 	end1 := time.Now().UnixNano()
 
-	logrus.Infof("rules num:%d, load rules cost time:%d", len(knowledgeContext.RuleEntities), end1-start1 )
+	logrus.Infof("rules num:%d, load rules cost time:%d", len(ruleBuilder.Kc.RuleEntities), end1-start1 )
 
 	if err != nil{
 		logrus.Errorf("err:%s ", err)
@@ -105,16 +103,15 @@ func Test_Multi(t *testing.T){
 - 通过示例可以发现,****规则的编译构建和执行是异步的****. 因此,用户可使用此特性,在不停服的情况下进行更新规则.
 - 通常做法是,创建一个新的ruleBuilder接受新的规则并编译构建,当编译构建完毕,使用新的ruleBuilder指针来替换老的ruleBuilder指针,进而达到更新gengine中执行的规则的目的.
  另外,用户还可以通过ruleBuilder来进行异步的语法检测.
-- 需要注意的是，编译构建规则是一个CPU密集型的事情，通常只有规则被用户更新的时候才去编译构建更新;当有多个gengine实例时，每次更新只构建一次，剩下的实例以复制(拷贝)的方式获得构建好的ruleBuilder(规则)
+- 需要注意的是,编译构建规则是一个CPU密集型的事情,通常只有规则被用户更新的时候才去编译构建更新;当有多个gengine实例时,每次更新只构建一次,剩下的实例以复制(拷贝)的方式获得构建好的ruleBuilder(规则)
 
 
 #### 真实服务举例
 
-在真实的线上服务中，请按照下面的方式来加载或更新规则:
+在真实的线上服务中,请按照下面的方式来加载或更新规则:
 
 ```go
 type  MyService  struct{
-	Kc       *base.KnowledgeContext
 	Dc       *context.DataContext
 	Rb       *builder.RuleBuilder
 	Gengine  *engine.Gengine
@@ -129,8 +126,7 @@ func NewMyService(ruleStr string, /* other params */ ) *MyService {
 	// there add what you want to use in every request
 	dataContext.Add("println", fmt.Println)
 
-	knowledgeContext := base.NewKnowledgeContext()
-	ruleBuilder := builder.NewRuleBuilder(knowledgeContext, dataContext)
+	ruleBuilder := builder.NewRuleBuilder(dataContext)
 	e := ruleBuilder.BuildRuleFromString(ruleStr)
 	if e != nil {
 		panic(e)
@@ -138,7 +134,6 @@ func NewMyService(ruleStr string, /* other params */ ) *MyService {
 	gengine := engine.NewGengine()
 
 	return &MyService{
-		Kc      : knowledgeContext,
 		Dc      : dataContext,
 		Rb      : ruleBuilder,
 		Gengine : gengine,
@@ -148,7 +143,7 @@ func NewMyService(ruleStr string, /* other params */ ) *MyService {
 // when user want to update rules in running time, use it
 func (ms *MyService)UpdateRule(newRuleStr string) error {
 
-	rb := builder.NewRuleBuilder(ms.Kc, ms.Dc)
+	rb := builder.NewRuleBuilder(ms.Dc)
 	e := rb.BuildRuleFromString(newRuleStr)
 	if e != nil {
 		return  e

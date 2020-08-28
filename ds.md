@@ -1,6 +1,6 @@
 # gengine支持的数据结构
 
-gengine主要支持4种数据结构,分别是golang的struct，以及基础类型的map、array和slice, 为了保持简洁、以及语言的无关性, 支持这4种结构的如下操作:
+gengine主要支持4种数据结构,分别是golang的struct,以及基础类型的map、array和slice, 为了保持简洁、以及语言的无关性, 支持这4种结构的如下操作:
 
 ### 注入struct
 **注入struct必须是以指针的形式注入,否则无法在规则中改变结构体的属性值**,注入结构体示例如下:

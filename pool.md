@@ -77,7 +77,7 @@ func (gp *GenginePool)ExecuteRulesWithStopTag(reqName string, req interface{}, r
 func (gp *GenginePool)ExecuteRulesWithMultiInputAndStopTag(data map[string]interface{}, stag *Stag) error 
 ```
 - 此方法继承了```ExecuteRulesWithMultiInput``` 可以传入任意多个临时参数的优点
-- 同时继承了```ExecuteRulesWithStopTag```可以在顺序执行模式和混合模式下，用户可以使用stag来控制是否继续执行后续规则的优点
+- 同时继承了```ExecuteRulesWithStopTag```可以在顺序执行模式和混合模式下,用户可以使用stag来控制是否继续执行后续规则的优点
 - v1.1.8中引入
 
 #### ExecuteSelectedRulesWithMultiInput方法
