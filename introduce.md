@@ -28,10 +28,10 @@ go 1.14
 
 require (
     google.golang.org/grpc v1.22.0
-	gengine v1.0.8
+	gengine v1.3.1
 )
 
-replace gengine => github.com/rencalo770/gengine v1.1.5
+replace gengine => github.com/rencalo770/gengine v1.3.1
 ```
 
 如果你只依赖gengine,那么go.mod文件这么写:
@@ -39,9 +39,9 @@ replace gengine => github.com/rencalo770/gengine v1.1.5
 ```
 module your_module_name
 
-require gengine v1.0.8
+require gengine v1.3.1
 
-replace gengine => github.com/rencalo770/gengine v1.1.5
+replace gengine => github.com/rencalo770/gengine v1.3.1
 ```
 
 
