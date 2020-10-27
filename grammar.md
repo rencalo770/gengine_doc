@@ -82,7 +82,7 @@ end`
 - 测试:https://github.com/rencalo770/gengine/blob/master/test/at_name_test.go
 
 #### @id语法
-- 在规则体中使用@id含义是,如果当前的规则名是可以转化为整数的字符串,则@id就是规则名的整数值,如果规则名字符串不可转化为整数，则@id的值为0.这个是为了方便用户以规则名(规则id)来管理规则
+- 在规则体中使用@id含义是,如果当前的规则名是可以转化为整数的字符串,则@id就是规则名的整数值,如果规则名字符串不可转化为整数，则@id的值为0.这个是为了方便用户以规则名作为整型参数
 - 测试: https://github.com/rencalo770/gengine/blob/master/test/at_id_test.go
 
 
