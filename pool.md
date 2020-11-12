@@ -100,9 +100,6 @@ func  (gp *GenginePool)ExecuteSelectedRulesConcurrentWithMultiInput(data map[str
 - 此方法允许用户在池中选择指定的规则去执行
 - 此方法并发执行用户选中的规则
 
-#### 以上pool测试代码
-- https://github.com/rencalo770/gengine/blob/master/test/pool_test.go
-
 #### ExecuteSelectedRulesMixModelWithMultiInput方法
 ```go
 func (gp *GenginePool) ExecuteSelectedRulesMixModelWithMultiInput(data map[string]interface{}, names []string) error {
