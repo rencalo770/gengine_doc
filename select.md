@@ -21,6 +21,21 @@ func (g *Gengine)ExecuteSelectedRulesConcurrent(rb * builder.RuleBuilder, names 
 - names参数,传入的是多个规则名称组成的数组,如当用户传入```name :=[]string{"1", "7", "3"}```时,gengine不会考虑规则的优先级,并发执行这3个规则.  
 - 如果用户传入的规则名不存在,gengine在执行的过程中会日志记录下来.
 
+####  ExecuteSelectedRulesMixModel方法
+```go
+func (g *Gengine) ExecuteSelectedRulesMixModel(rb *builder.RuleBuilder, names []string) error 
+```
+- names参数,传入的是多个规则名称组成的数组,如当用户传入```name :=[]string{"1", "7", "3"}```时,gengine混合模式执行这3个规则.  
+- 如果用户传入的规则名不存在,gengine在执行的过程中会日志记录下来.
+
+#### ExecuteSelectedInverseMixModel方法
+```go
+func (g *Gengine) ExecuteSelectedInverseMixModel(rb *builder.RuleBuilder, names []string) error {
+```
+- names参数,传入的是多个规则名称组成的数组,如当用户传入```name :=[]string{"1", "7", "3"}```时,gengine逆混合模式执行这3个规则.  
+- 如果用户传入的规则名不存在,gengine在执行的过程中会日志记录下来.
+
+
 ### 具体实现
 - https://github.com/rencalo770/gengine/blob/master/engine/gengine.go
 
