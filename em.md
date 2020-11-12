@@ -31,10 +31,10 @@ gengine中加载的规则,选取一个最高优先级规则最先执行,剩下�
 |```ExecuteSelectedRulesConcurrent```|并发模式|用户可以使用规则名,直接选择指定的规则来执行,被选取的规则并发执行|
 |```ExecuteSelectedRulesMixModel```|混合模式|用户可以使用规则名,直接选择指定的规则来执行,被选中的规则使用混合模式执行,如果第一个规则执行有error,则不会再执行后面的规则|
 |```ExecuteInverseMixModel```|逆混合模式|选取优先级最高的n-1个规则并发执行,这个n-1个规则执行完毕之后,剩下的最后一个优先级最低的规则开始执行; 如果前n-1个规则执行无异常，则继续执行最后一个规则|
-|```ExecuteSelectedInverseMixModel```|逆混合模式|用户可以使用规则名,直接选择指定的规则来执行;假设用户选取了m个规则, 则选取优先级最高的m-1个规则并发执行,这个m-1个规则执行完毕之后,剩下的最后一个优先级最低的规则开始执行; 如果前m-1个规则执行无异常，则继续执行最后一个规则|
+|```ExecuteSelectedRulesInverseMixModel```|逆混合模式|用户可以使用规则名,直接选择指定的规则来执行;假设用户选取了m个规则, 则选取优先级最高的m-1个规则并发执行,这个m-1个规则执行完毕之后,剩下的最后一个优先级最低的规则开始执行; 如果前m-1个规则执行无异常，则继续执行最后一个规则|
 
 
-- 基于选择式的```ExecuteSelectedRules``` , ```ExecuteSelectedRulesConcurrent```,```ExecuteSelectedRulesMixModel```和```ExecuteSelectedInverseMixModel``` 几个方法还会在后续详细讨论
+- 基于选择式的```ExecuteSelectedRules``` , ```ExecuteSelectedRulesConcurrent```,```ExecuteSelectedRulesMixModel```和```ExecuteSelectedRulesInverseMixModel``` 几个方法还会在后续详细讨论
 
 
 
