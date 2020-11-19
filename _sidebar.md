@@ -2,6 +2,7 @@
 * [示例](example)
 * [架构](framework)
 * [语法](grammar)
+* [规则更新方法](compile) 
 * [执行模式](em)
 * [选择式的执行规则](select)
 * [停止标志位](stop_tag)
