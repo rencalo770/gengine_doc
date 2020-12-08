@@ -12,6 +12,12 @@ gengine相比于java领域的著名规则引擎drools的优势如下:
 | 规则编写难易程度 | 高,与java强相关 | 低,自定义简单语法,与golang弱相关 | 
 | 规则执行性能 | 低、无论是规则之间还是规则内部,都是顺序执行 | 高,无论是规则间、还是规则内,都支持并发执行.用户基于需要来选择合适的执行模式 | 
 
+### 为什么不使用gopher-lua或者js on golang
+- 因为我们开发业务的主语言是golang,如果使用gopher-lua或者javascript on golang,那么业务逻辑会从golang中"逃逸"到lua上或者javascript上,
+使用者需要额外去学习lua或者javascript, 因此增加了业务逻辑的开发难度与测试难度;使用gengine,业务逻辑始终用golang开发,逻辑实现始终控制在golang代码内,且保持golang的语言性能,
+当不再需要gengine支持的时候,基本上无需做任何改动,就可以将gengine上配置的代码(规则)转化为golang原生代码.
+
+
 ### 设计思想
 - gengine的设计思想的帖子,您可以看这里:https://xie.infoq.cn/article/40bfff1fbca1867991a1453ac
 
