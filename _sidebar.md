@@ -1,6 +1,7 @@
 * [简介](introduce)
 * [示例](example)
 * [架构](framework)
+* [对比](compare)
 * [语法](grammar)
 * [规则更新方法](compile) 
 * [执行模式](em)
