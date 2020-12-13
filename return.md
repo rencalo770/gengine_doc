@@ -6,7 +6,7 @@
 ## gengine单实例
 - 测试框架代码
 
-```
+```go
 //测试的框架代码
 import (
 	"gengine/builder"
@@ -42,7 +42,8 @@ func getInt() int {
 
 - 以下的所有测试代码(规则),都是上面测试框架样板代码上实现的
 1.直接返回nil,此return用法仅用于中断当前规则执行
-```
+
+```go
 func Test_return_nil_1(t *testing.T) {
 
 	//无返回值,返回nil
@@ -63,6 +64,7 @@ func Test_return_nil_1(t *testing.T) {
 ```
 
 2.在一个规则中,gengine的return语句可以基于条件返回不同类型的值,这正是gengine的return语句的****特色之处****！ 
+
 ```go
 //test 这里的表现和golang return略有不同
 func Test_return_complex_if_return_int64(t *testing.T)  {
@@ -105,7 +107,7 @@ func Test_return_complex_if_return_int64(t *testing.T)  {
 - 从v1.4.1开始,gengine pool中的执行规则的方法,有两个返回值,一个是标识规则是否执行出错的error对象,另一个是收集本次规则集执行之后,每个规则的返回值结果的对象```map[string]interface{}```,如果用户不想关注此返回值,忽略就行.
 - 具体测试如下,测试代码位置：https://github.com/rencalo770/gengine/blob/master/test/pool_return_statements_test.go
 
-```
+```go
 import (
 	"fmt"
 	"gengine/engine"
