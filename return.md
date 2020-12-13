@@ -62,7 +62,7 @@ func Test_return_nil_1(t *testing.T) {
 }
 ```
 
-2.在一个规则中,gengine的return语句可以基于条件返回不同类型的值,这正是gengine的return语句的特色之处！ 
+2.在一个规则中,gengine的return语句可以基于条件返回不同类型的值,这正是gengine的return语句的****特色之处****！ 
 ```go
 //test 这里的表现和golang return略有不同
 func Test_return_complex_if_return_int64(t *testing.T)  {
