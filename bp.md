@@ -241,6 +241,7 @@ func (r *Room) GetNum( /*params*/ ) int64 {
 }
 
 //初始化业务服务
+//apiOuter这里最好仅注入一些无状态函数，方便应用中的状态管理
 func NewMyService(poolMinLen, poolMaxLen int64, em int, rulesStr string, apiOuter map[string]interface{}) *MyService {
 	pool, e := engine.NewGenginePool(poolMinLen, poolMaxLen, em, rulesStr, apiOuter)
 	if e != nil {
@@ -256,7 +257,7 @@ func (ms *MyService) Service(req *Request) (*Response, error) {
 
 	resp := &Response{}
 
-	//基于需要注入接口或数据
+	//基于需要注入接口或数据,data这里最好仅注入与本次请求相关的结构体或数据，便于状态管理
 	data := make(map[string]interface{})
 	data["req"] = req
 	data["resp"] = resp
@@ -265,7 +266,8 @@ func (ms *MyService) Service(req *Request) (*Response, error) {
 	room := &Room{}
 	data["room"] = room
 
-	e := ms.Pool.ExecuteSelectedRulesWithMultiInput(data, req.RuleNames)
+    //
+	e,_ := ms.Pool.ExecuteSelectedRulesWithMultiInput(data, req.RuleNames)
 	if e != nil {
 		println(fmt.Sprintf("pool execute rules error: %+v", e))
 		return nil, e

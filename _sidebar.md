@@ -3,6 +3,7 @@
 * [架构](framework)
 * [与gopher-lua对比](compare)
 * [语法](grammar)
+* [规则支持return语法](return) 
 * [规则更新方法](compile) 
 * [执行模式](em)
 * [选择式的执行规则](select)
