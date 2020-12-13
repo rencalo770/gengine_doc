@@ -9,7 +9,7 @@
 - 代码位置: https://github.com/rencalo770/gengine/blob/master/context/data_context.go
 - ```dataContext```允许用户注入将要在规则代码中使用的API
 - 举例:
-```golang
+```go
 	dataContext := context.NewDataContext()
 	//用户注入需要在规则代码中使用的API
 	dataContext.Add("println",fmt.Println)

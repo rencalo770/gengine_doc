@@ -13,7 +13,7 @@
 
 - 举例：
 
-```golang
+```go
 //本质上是自己实现engine pool
 
 package server
@@ -179,7 +179,7 @@ func Test_self(t *testing.T) {
 <font color=red >使用gengine池时,池保证了实例之间是隔离的,但池也无法保证用户注入到池中的gengine实例中的变量是不共享或线程安全的</font>,
 因此,为了避免并发安全问题,每次取一个池中gengine实例执行规则时,用户注入到实例中的变量最好是新实例化出来的变量来重新注入,或者是线程安全的.
 
-```golang
+```go
 
 package server
 
