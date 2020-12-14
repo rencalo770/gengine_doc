@@ -10,7 +10,7 @@
 | -------- | -------- | 
 | nSort - mConcurrent | 前n个规则顺序执行,执行完毕,并发执行剩下的m个规则|  
 | nConcurrent - mSort | 前n个规则并发执行,执行完毕,顺序执行剩下的m个规则|
-| nConcurrent - mSort | 前n个规则并发执行,执行完毕,并发执行剩下的m个规则|
+| nConcurrent - mConcurrent | 前n个规则并发执行,执行完毕,并发执行剩下的m个规则|
 | nSort - mSort       | 前n个规则顺序执行,执行完毕,顺序执行剩下的m个规则;此模式退化为顺序执行模式,也就是普通的顺序模式 |
 
 - 对应的API
