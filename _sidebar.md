@@ -6,6 +6,7 @@
 * [规则支持return语法](return) 
 * [规则更新方法](compile) 
 * [执行模式](em)
+* [N-M执行模式](nm)
 * [选择式的执行规则](select)
 * [停止标志位](stop_tag)
 * [支持的数据结构](ds)
