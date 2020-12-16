@@ -3,6 +3,7 @@
 * [架构](framework)
 * [与gopher-lua对比](compare)
 * [语法](grammar)
+* [报错时行号支持](line_number)
 * [规则支持return语法](return) 
 * [规则更新方法](compile) 
 * [执行模式](em)
