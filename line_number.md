@@ -1,10 +1,12 @@
 # 报错时支持行号提示
+
 - gengine是规则引擎, 同时也可认为是一门开放的语言. 
 - 为了用户在使用过程中,获得更好的体验,gengine在很早的版本中,就支持了在规则执行出错时,提示出具体的行与列,帮助用户更快的排查具体的问题
 
-## 出错示例
+### 出错示例
 
 - 代码示例
+
 
 ```go 
 
@@ -15,7 +17,6 @@ import (
 	"gengine/engine"
 	"testing"
 )
-
 
 var lineNumberRules = `
 rule "line_number"  "when execute error,gengine will give out error"
@@ -74,9 +75,13 @@ func Test_number(t *testing.T) {
 - 测试代码位置:https://github.com/rencalo770/gengine/blob/master/test/line_number/line_number_test.go
 - 测试结果
 
-![avatar](_media/error.png)
-
-
+```  
+=== RUN   Test_number
+[rule: "line_number" executed, error:
+ line 12, column 0, code: ms.X(), NOT FOUND Function: X ]
+--- PASS: Test_number (0.00s)
+PASS
+```
 
 
 
