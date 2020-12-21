@@ -3,7 +3,7 @@
 我们在gengine使用的过程中观察到这种需求:<br/>
 - 假设现在gengine中有10个规则,规则名编号从"1"到"10",当一个请求过来的时候,用户是明确知道自己需要执行哪几个规则的.
 - **gengine支持用户使用规则名来选择要执行的规则**,这样不仅更加契合用户需求,还会更加高性能.
-
+- 且每一种执行模式都会有对应的选择模式
 
 ### 具体的方法
 
@@ -35,6 +35,12 @@ func (g *Gengine) ExecuteSelectedInverseMixModel(rb *builder.RuleBuilder, names 
 - names参数,传入的是多个规则名称组成的数组,如当用户传入```name :=[]string{"1", "7", "3"}```时,gengine逆混合模式执行这3个规则.  
 - 如果用户传入的规则名不存在,gengine在执行的过程中会日志记录下来.
 
+#### 基于N-M模式的选择模式
+```
+func (g *Gengine) ExecuteSelectedNSortMConcurrent(nSort, mConcurrent int, rb *builder.RuleBuilder, b bool, names []string) error 
+func (g *Gengine) ExecuteSelectedNConcurrentMSort(nConcurrent, mSort int, rb *builder.RuleBuilder, b bool, names []string) error
+func (g *Gengine) ExecuteSelectedNConcurrentMConcurrent(nConcurrent, mConcurrent int, rb *builder.RuleBuilder, b bool, names []string) error
+```
 
 ### 具体实现
 - https://github.com/rencalo770/gengine/blob/master/engine/gengine.go

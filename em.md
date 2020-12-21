@@ -35,7 +35,7 @@ gengine中加载的规则,选取一个最高优先级规则最先执行,剩下�
 
 
 - 基于选择式的```ExecuteSelectedRules``` , ```ExecuteSelectedRulesConcurrent```,```ExecuteSelectedRulesMixModel```和```ExecuteSelectedRulesInverseMixModel``` 几个方法还会在后续详细讨论
-
+- 以及pool中对应的相关方法,请看https://rencalo770.github.io/gengine_doc/#/pool
 
 
 
