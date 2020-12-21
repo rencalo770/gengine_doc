@@ -14,14 +14,6 @@ func (g *Gengine) ExecuteWithStopTagDirect(rb *builder.RuleBuilder, b bool, sTag
 ```
 - 测试用例:https://github.com/rencalo770/gengine/blob/master/test/stop_tag_test/stop_tag_in_sort_model_test.go
 
-对应的规则引擎pool的方法支持:
-
-```go
-func (gp *GenginePool)ExecuteRulesWithStopTag(reqName string, req interface{}, respName string, resp interface{}, stag *Stag) error 
-
-//and
-func (gp *GenginePool)ExecuteRulesWithMultiInputAndStopTag(data map[string]interface{}, stag *Stag) error
-```
 
 #### 混合模式场景
 ```go 
@@ -29,12 +21,3 @@ func (g *Gengine) ExecuteMixModelWithStopTagDirect(rb * builder.RuleBuilder, sTa
 ```
 
 - 测试用例: https://github.com/rencalo770/gengine/blob/master/test/stop_tag_test/stop_tag_in_mix_model_test.go
-对应的规则引擎pool的方法支持:
-
-```go
-func (gp *GenginePool)ExecuteRulesWithStopTag(reqName string, req interface{}, respName string, resp interface{}, stag *Stag) error 
-
-//and
-func (gp *GenginePool)ExecuteRulesWithMultiInputAndStopTag(data map[string]interface{}, stag *Stag) error
-```
-- 注意,在规则引擎pool中,顺序模式和混合模式是相同的两个接口,是因为执行模式的控制分离到了```func (gp *GenginePool)SetExecModel(execModel int) error```
