@@ -7,6 +7,7 @@
 - 当一个gengine实例作为服务核心中调用的的模块的时候,当规则少的时候,一个请求数据执行所有规则的时间非常短,基于当前请求执行的规则的状态维持的时间也非常短,因此不会引发任何问题;
 - 但当一个gengine实例中加载了几十个甚至上百个规则的时候,一个请求执行完所有的规则的时间就会变长,尤其是处于高QPS的情况下,当前请求还未执行完并返回时,下一个请求就已经到来,这个时候下一个请求就极有可能破坏当前请求执行规则的状态,并最终导致不可预知的结果
 - 为了解决这个问题,gengine框架仿照"数据库连接池",实现了一个"gengine池".
+- pool的所有API都是线程安全的
 
 ### 代码位置
 https://github.com/rencalo770/gengine/blob/master/engine/gengine_pool.go
@@ -49,14 +50,19 @@ func NewGenginePool(poolMinLen ,poolMaxLen int64, em int, rulesStr string, apiOu
 |```func (g *Gengine) ExecuteSelectedNConcurrentMSort(nConcurrent, mSort int, rb *builder.RuleBuilder, b bool, names []string) error ``` <br/> ```func (gp *GenginePool) ExecuteSelectedNConcurrentMSort(nSort, mConcurrent int, b bool, names []string, data map[string]interface{}) (error, map[string]interface{})  ```  |基于规则名选择一批规则, N-M模式,前N个规则并发执行，接下来的M个规则顺序执行, 且N+M大于等于选定的规则集的长度|
 |```func (g *Gengine) ExecuteSelectedNConcurrentMConcurrent(nConcurrent, mConcurrent int, rb *builder.RuleBuilder, b bool, names []string) error  ```<br/>```func (gp *GenginePool) ExecuteSelectedNConcurrentMConcurrent(nSort, mConcurrent int, b bool, names []string, data map[string]interface{}) (error, map[string]interface{})  ```|基于规则名选择一批规则,N-M模式,前N个规则并发执行，接下来的M个规则也并发执行, 且N+M大于等于选定的规则集的长度|
 
+- 其中pool执行方法的第二份返回值,是规则集中的每个规则执行之后的return语句的返回值
 
-### 动态化更新规则
+### 如何设置poolMaxLen大小
+- 即如何设置引擎池中实例的最大个数
+- poolMinLen = poolMaxLen / 2
+- poolMaxLen =  cpu_core * 5 到 cpu_core * 10   
+
+### 动态化实时更新规则
 ```go 
 //更新规则引擎池中gengine实例中的规则
 func (gp *GenginePool)UpdatePooledRules(ruleStr string) error
 ```
 此方法允许用户在"规则引擎池"对外提供服务的时候,实时的更新规则,且线程安全
-
 
 ### 清空规则
 ```go
@@ -70,14 +76,27 @@ func (gp *GenginePool)ClearPoolRules()
 //设置执行模式
 func (gp *GenginePool)SetExecModel(execModel int) error 
 ```
-此方法允许用户在"规则引擎池"对外提供服务的时候,实时的改变规则执行模式,且线程安全
-- execModel 执行模式编号,只能为1、2、3或4中的一个值
+
+- 此方法允许用户在"规则引擎池"对外提供服务的时候,实时的改变规则执行模式,且线程安全
+- 对execModel有效的执行函数仅有如下三个, execModel 可以为1、2、3、4
+1. ```func (gp *GenginePool) ExecuteRules(reqName string, req interface{}, respName string, resp interface{}) (error, map[string]interface{}) ```,此方法仅允许注入req和resp参数
+2. ```func (gp *GenginePool) ExecuteRulesWithMultiInput(data map[string]interface{}) (error, map[string]interface{})  ```, 此方法允许在运行之前注入任意多个参数
+3. ```func (gp *GenginePool) ExecuteSelected(data map[string]interface{}, names []string) (error, map[string]interface{}) ```,此方法在选择模式下,允许在运行之前注入任意多个参数
 
 
+### 其他可能重要的方法
 
+#### 查看规则是否存在的方法
+``` func (gp *GenginePool) IsExist(ruleName string) bool  ``` 检查某个规则是否存在于pool中
 
+#### 获取规则的优先级
+``` func (gp *GenginePool) GetRuleSalience(ruleName string) (int64, error) ``` 如果error!=nil 表示不存在此规则;否则可以获取到指定规则的优先级
 
+#### 获取规则描述信息
+``` func (gp *GenginePool) GetRuleDesc(ruleName string) (string, error)  ``` 如果error!=nil 表示不存在此规则;否则可以获取到指定规则的描述
 
+#### 获取pool中不同规则的个数
+``` func (gp *GenginePool) GetRulesNumber() int  ```
 
 
 
