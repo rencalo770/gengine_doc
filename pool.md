@@ -78,10 +78,10 @@ func (gp *GenginePool)SetExecModel(execModel int) error
 ```
 
 - 此方法允许用户在"规则引擎池"对外提供服务的时候,实时的改变规则执行模式,且线程安全
-- 对execModel有效的执行函数仅有如下三个, execModel 可以为1、2、3、4
-1. ```func (gp *GenginePool) ExecuteRules(reqName string, req interface{}, respName string, resp interface{}) (error, map[string]interface{}) ```,此方法仅允许注入req和resp参数
-2. ```func (gp *GenginePool) ExecuteRulesWithMultiInput(data map[string]interface{}) (error, map[string]interface{})  ```, 此方法允许在运行之前注入任意多个参数
-3. ```func (gp *GenginePool) ExecuteSelected(data map[string]interface{}, names []string) (error, map[string]interface{}) ```,此方法在选择模式下,允许在运行之前注入任意多个参数
+- 对execModel有效的执行函数仅有如下三个(以后还可能新增,但方法名一定以WithSpecifiedEM结尾 ), execModel 可以为1、2、3、4
+1. ```func (gp *GenginePool) ExecuteRulesWithSpecifiedEM(reqName string, req interface{}, respName string, resp interface{}) (error, map[string]interface{}) ```,此方法仅允许注入req和resp参数
+2. ```func (gp *GenginePool) ExecuteRulesWithMultiInputWithSpecifiedEM(data map[string]interface{}) (error, map[string]interface{})  ```, 此方法允许在运行之前注入任意多个参数
+3. ```func (gp *GenginePool) ExecuteSelectedWithSpecifiedEM(data map[string]interface{}, names []string) (error, map[string]interface{}) ```,此方法在选择模式下,允许在运行之前注入任意多个参数
 
 
 ### 其他可能重要的方法
