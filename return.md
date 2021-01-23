@@ -1,6 +1,7 @@
 # 规则支持return语法
 - 从gengine v1.4.1开始支持return语法,支持return语法的重要原因是进一步增强gengine中DSL与golang的交互能力. 
 - gengine的return语法含义和常见的编程语言含义基本一致,即含义是: 一条规则(可理解为一个函数),遇上return语句时就返回,同时,如果在return后面还有处于return相同的可达路径上的代码,则编译出错.
+- return语句对于规则而言是非必须的
 - 但gengine的return带有一定的特色性, 具体请看如下实例
 
 ## gengine单实例
