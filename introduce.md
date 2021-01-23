@@ -23,7 +23,7 @@ gengine相比于java领域的著名规则引擎drools的优势如下:
 
 
 ### 使用
-- go.mod文件(请使用最新版本)
+- go.mod文件(请使用最新版本! 查看最新tag版本: https://github.com/rencalo770/gengine/tags )
 
 如果你不仅依赖gengine,还依赖其他框架,如grpc,那么go.mod 文件这么写:
 
