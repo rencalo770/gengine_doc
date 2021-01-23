@@ -99,7 +99,7 @@ func Test_return_complex_if_return_int64(t *testing.T)  {
 }
 ```
 
-- 另外,return语句不能出现在conc{}并发语句块中.如果这么写了,但在规则构建的时候,会报编译错误.
+- 另外,return语句不能出现在conc{}并发语句块中.如果这么写了,在规则构建的时候,会报编译错误.
 - ****return和StopTag的区别****是,return仅能终止当前所在规则执行,stopTag等于true时,会终止此规则链中当前规则之后的所有规则的执行
 - 所有的测试用例位置,请看这里:https://github.com/rencalo770/gengine/blob/master/test/return_statement_test.go
 
