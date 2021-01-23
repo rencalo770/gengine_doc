@@ -5,7 +5,7 @@
 
 ## 一般规则
 - 基础类型永远都不是nil,都是其对应的默认值
-- 非基础类型比较可能为nil,具体测试详见如下
+- 非基础类型可能为nil,具体测试详见如下
 - array:  https://github.com/rencalo770/gengine/blob/master/test/map_slice_array/array_nil_value_test.go
 - map:    https://github.com/rencalo770/gengine/blob/master/test/map_slice_array/map_nil_value_test.go
 - slice:  https://github.com/rencalo770/gengine/blob/master/test/map_slice_array/slice_nil_value_test.go
