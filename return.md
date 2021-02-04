@@ -134,6 +134,7 @@ func Test_pool_return_statments(t *testing.T) {
 	apis["print"] = fmt.Println
 	apis["random"] = random
     //实例化pool时,最好仅注入无状态函数,供所有pool内实例执行,这样可以很好的避免线程安全问题
+    //对应的参数含义，可去查看函数的注释，或查看
 	pool, e1 := engine.NewGenginePool(1, 2, 1, rule, apis)
 	if e1 != nil {
 		println(fmt.Sprintf("e1: %+v", e1))
@@ -141,7 +142,7 @@ func Test_pool_return_statments(t *testing.T) {
 
     //具体执行时,注入与此次规则相关的具体结构体或方法,这样可以很好的避免线程安全问题
 	data := make(map[string]interface{})
-	e2, rrm1 := pool.ExecuteRulesWithMultiInput(data)
+	e2, rrm1 := pool.ExecuteRulesWithMultiInputWithSpecifiedEM(data)
 	if e2 != nil {
 		panic(e2)
 	}
@@ -150,7 +151,7 @@ func Test_pool_return_statments(t *testing.T) {
 	ix1 := i1.(int)
 	println("ix1--->", ix1)
 
-	e3, rrm2 := pool.ExecuteRulesWithMultiInput(data)
+	e3, rrm2 := pool.ExecuteRulesWithMultiInputWithSpecifiedEM(data)
 	if e3 != nil {
 		panic(e2)
 	}

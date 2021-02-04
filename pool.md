@@ -20,13 +20,13 @@ func NewGenginePool(poolMinLen ,poolMaxLen int64, em int, rulesStr string, apiOu
 #### 参数说明
 - poolMinLen 池中初始实例化的gengine实例个数 
 - poolMaxLen 池子中最多可实例化的gengine实例个数, 且poolMaxLen > poolMinLen; 当poolMinLen个实例不够用的时候,最多还可实例化(poolMaxLen-poolMinLen)个gengine实例
-- em 规则执行模式,em只能等于1、2、3; em=1时,表示顺序执行规则,em=2的时候,表示并发执行规则,em=3的时候,表示混合模式执行规则;当使用```ExecuteSelectedRules```和```ExecuteSelectedRulesConcurrent```等指明了具体的执行模式的方法执行规则时,此参数自动失效
+- em 规则执行模式,em只能等于1、2、3、 4; em=1时,表示顺序执行规则,em=2的时候,表示并发执行规则,em=3的时候,表示混合模式执行规则,em=4的时候,表示逆混合模式执行规则;当使用```ExecuteSelectedRules```和```ExecuteSelectedRulesConcurrent```等指明了具体的执行模式的方法执行规则时,此参数自动失效
 - rulesStr要初始化的所有的规则字符串
 - apiOuter需要注入到gengine中使用的所有api,最好仅注入一些公共的无状态函数或参数;对于那些具体与某次请求(执行)相关的参数,则在执行规则方法时使用```data map[string]interface{} ``` 注入;这样会有利于状态管理。
 
 #### pool中执行规则的方法
 - pool中提供了一些基于执行模式的标示字段em 来控制一些通用方法的具体模式是什么,虽然对于某些需要频繁的模式切换场景带来了便利，但也为仅需要某种模式的场景带来了疑惑.因此，gengine pool实现以下策略
-- gengine 单实例中的方法，对应的pool模式中也会有一个功能完全一样的同名方法实现, 这样，即确保了用户易于测试(单实例中进行)，又确保了用户易于使用(pool中同名方法),具有对应名称的方法时,初始化pool时的em字段失效
+- ***gengine 单实例中的方法，对应的pool模式中也会有一个功能完全一样的同名方法实现, 这样，即确保了用户易于测试(单实例中进行)，又确保了用户易于使用(pool中同名方法),具有对应名称的方法时,初始化pool时的em字段失效***
 - 具体对应如下:
 
 | ```gengine.go```中的方法(上) <br/> ```gengine_pool.go```中对应的方法(下)| 方法含义 | 
