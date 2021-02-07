@@ -6,7 +6,7 @@
 * [报错时行号支持](line_number)
 * [内置函数](inner_function)
 * [规则支持return语法](return) 
-* [规则更新方法](compile) 
+* [规则更新与删除](compile) 
 * [执行模式](em)
 * [N-M执行模式](nm)
 * [选择式的执行规则](select)
