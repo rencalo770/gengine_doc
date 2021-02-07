@@ -21,8 +21,6 @@ e1 := ruleBuilder.BuildRuleFromString(rulesString) //这里全量更新
 pool初始化的时候是全量更新的
 //第二处
 func (gp *GenginePool) UpdatePooledRules(ruleStr string) error
-
-
 ```
 
 #### 增量更新
@@ -39,10 +37,8 @@ func (gp *GenginePool) UpdatePooledRulesIncremental(ruleStr string) error
 
 ```
 
-#### 测试用例
+#### 增量更新测试
 - https://github.com/rencalo770/gengine/blob/master/test/increment_update_test.go
-
-## 规则删除
 
 #### 批量删除
 - 当我们不需要某个规则的时候,我们想直接删除某个规则,gengine也提供了对应的规则删除方法
@@ -55,7 +51,7 @@ func (builder *RuleBuilder) RemoveRules(ruleNames []string) error
 func (gp *GenginePool) RemoveRules(ruleNames []string) error 
 
 ```
-#### 测试用例
+#### 删除测试
 - https://github.com/rencalo770/gengine/blob/master/test/remove_rules_test.go
 
 
