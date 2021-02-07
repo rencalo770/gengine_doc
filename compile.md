@@ -1,5 +1,6 @@
 # 规则更新与删除
 ## 规则更新方式
+
 - 也叫规则编译方式
 - 在一个场景中,当规则仅有几十个或上百个的时候,改动一个规则时,重新编译所有规则并加载,这不会引起什么问题。但这种模式对于只有少量规则的场景是适合的;
 - 但随着业务推进,一个场景可能规则多到成千上万个,如果还是以每次全量的方式来编译更新,则会严重损耗服务器性能(CPU资源);并且我们在修改规则的时候,常常也是一个个的修改,因此,对于那些没有改动的规则,进行重新编译更新,是一种完全不必要服务器资源浪费.
@@ -42,6 +43,7 @@ func (gp *GenginePool) UpdatePooledRulesIncremental(ruleStr string) error
 - https://github.com/rencalo770/gengine/blob/master/test/increment_update_test.go
 
 ## 规则删除
+
 #### 批量删除
 - 当我们不需要某个规则的时候,我们想直接删除某个规则,gengine也提供了对应的规则删除方法
 
@@ -53,7 +55,7 @@ func (builder *RuleBuilder) RemoveRules(ruleNames []string) error
 func (gp *GenginePool) RemoveRules(ruleNames []string) error 
 
 ```
-#### 测试
+#### 测试用例
 - https://github.com/rencalo770/gengine/blob/master/test/remove_rules_test.go
 
 
