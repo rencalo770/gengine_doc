@@ -14,7 +14,7 @@ golang是一种静态类型语言,不如java般灵活,想要实现动态加载�
 ### golang plugin使用
 - 插件编写
 
-```golang
+```go
 //package必须是main
 package main
 
