@@ -90,7 +90,8 @@ func Test_pligin(t *testing.T) {
 1. 由上面的插件使用可看出,使用插件需要这么几个步骤: a.定义插件go文件, b.命令生成.so文件, c.Open加载插件 d.Lookup查找插件定义中导出的api, e.接口类型转换 f.使用插件提供的功能
 2. 在gengine中使用插件,需要步骤a和b,然后告诉gengine插件的.so文件位置, 就可以在gengine规则配置中使用了
 3. 但是,要能在gengine正确的使用plugin,还需要遵守一点规范(要求): a.生成的.so文件,必须是plugin_exportName_apiName.so这种形式,其中exportName就是插件实现中的导出名,必须大写开头, apiName是在gengine规则配置中使用的插件名称
-4. 请看下面的测试
+4. gengine中提供的热加载接口都是线程安全的
+5. 请看下面的测试
 
 - 单实例plugin加载测试
 ```go
